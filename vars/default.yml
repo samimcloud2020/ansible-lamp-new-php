@@ -1,5 +1,5 @@
 ---
-mysql_root_password: "samim123"
+mysql_root_password: "root123"
 app_user: "ubuntu"
 http_host: "jenkins.trycloud.co.in"
 http_conf: "jenkins.trycloud.co.in.conf"
