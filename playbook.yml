@@ -74,21 +74,16 @@
         state: present
       with_items:
         - mariadb-server
-        
     - name: configuration file my.cnf
       shell: cat /etc/mysql/my.cnf
-      
     - name: checking for port allow 3306
       shell: cat /etc/mysql/mysql.cnf | grep 3306 | wc -l
       register: result
-      
     - name: debug output
       debug: msg="{{result.stdout}}"
-      
     - name: adding port = 3306 in /etc/mysql/my.cnf
       lineinfile: dest=/etc/mysql/my.cnf line="port = 3306"
       when: result.stdout == "0"
-      
     - name: start mariadb
       service: name=mariadb state=started enabled=true
        
@@ -96,42 +91,23 @@
       apt:
         name: python3-mysqldb
         state: latest
-        
-    - name: Sets the root password
-      mysql_user:
-        name: root
-        password: "{{ mysql_root_password }}"
-        priv: "*.*:ALL"
-        login_unix_socket: /var/run/mysqld/mysqld.sock
-
-    - name: Removes all anonymous user accounts
-      mysql_user:
-        name: ''
-        host_all: yes
-        state: absent
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
-        
     - name: create mariadb db
       mysql_db:
         name: database1
-        state: present        
-        
-    
-    - name: Removes the MySQL test database
-      mysql_db:
-        name: test
-        state: absent
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
-        
+        state: present    
+    - name: create mariadb user in ecomdb db
+      mysql_user:
+        name: root
+        password: root123
+        priv: "*.*:ALL"
+        state: present
     - name: run sql script
       mysql_query:
         login_db: database1
         login_user: root
         login_password: root123
         query:
-          - USE db1
+          - USE database1
           
           - CREATE TABLE products (id mediumint(8) unsigned NOT NULL
             auto_increment,Name varchar(255) default NULL,Price varchar(255)
@@ -140,15 +116,7 @@
           - INSERT INTO products (Name,Price,ImageUrl) VALUES
             ("Laptop","101","c-1.png"),("Drone","200","c-2.png"),("VR","300","c-3.png"),("Tablet","50","c-5.png"),("Watch","90","c-6.png"),("Phone
             Covers","20","c-7.png"),("Phone","80","c-8.png"),("Laptop","150","c-4.png")
-        single_transaction: true      
-
-  # UFW Configuration
-    - name: "UFW - Allow HTTP on port {{ http_port }}"
-      ufw:
-        rule: allow
-        port: "{{ http_port }}"
-        proto: tcp
-
+        single_transaction: true
   # PHP Info Page
     - name: Sets Up PHP Info Page
       template:
