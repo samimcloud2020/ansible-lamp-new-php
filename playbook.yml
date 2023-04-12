@@ -68,6 +68,35 @@
       
 
   # MySQL Configuration
+    - name: install madiadb server
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - mariadb-server
+        
+    - name: configuration file my.cnf
+      shell: cat /etc/mysql/my.cnf
+      
+    - name: checking for port allow 3306
+      shell: cat /etc/mysql/mysql.cnf | grep 3306 | wc -l
+      register: result
+      
+    - name: debug output
+      debug: msg="{{result.stdout}}"
+      
+    - name: adding port = 3306 in /etc/mysql/my.cnf
+      lineinfile: dest=/etc/mysql/my.cnf line="port = 3306"
+      when: result.stdout == "0"
+      
+    - name: start mariadb
+      service: name=mariadb state=started enabled=true
+       
+    - name: Install ansible python3 mysql dependency
+      apt:
+        name: python3-mysqldb
+        state: latest
+        
     - name: Sets the root password
       mysql_user:
         name: root
@@ -81,6 +110,7 @@
         state: absent
         login_user: root
         login_password: "{{ mysql_root_password }}"
+        
     - name: create mariadb db
       mysql_db:
         name: db1
@@ -88,10 +118,11 @@
 
     - name: Removes the MySQL test database
       mysql_db:
-        name: db1
+        name: test
         state: absent
         login_user: root
         login_password: "{{ mysql_root_password }}"
+        
     - name: run sql script
       mysql_query:
         login_db: db1
