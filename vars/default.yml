@@ -1,0 +1,7 @@
+---
+mysql_root_password: "samim123"
+app_user: "ubuntu"
+http_host: "jenkins.trycloud.co.in"
+http_conf: "jenkins.trycloud.co.in.conf"
+http_port: "80"
+disable_default: true
