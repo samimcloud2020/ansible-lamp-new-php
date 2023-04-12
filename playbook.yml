@@ -97,15 +97,15 @@
         state: present    
     - name: create mariadb user in ecomdb db
       mysql_user:
-        name: root
-        password: root123
+        name: samim
+        password: samim123
         priv: "*.*:ALL"
         state: present
     - name: run sql script
       mysql_query:
         login_db: database1
-        login_user: root
-        login_password: root123
+        login_user: samim
+        login_password: samim123
         query:
           - USE database1
           
