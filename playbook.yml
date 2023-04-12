@@ -70,7 +70,7 @@
   # MySQL Configuration
     - name: Sets the root password
       mysql_user:
-        name: samim
+        name: root
         password: "{{ mysql_root_password }}"
         login_unix_socket: /var/run/mysqld/mysqld.sock
 
@@ -79,7 +79,7 @@
         name: ''
         host_all: yes
         state: absent
-        login_user: samim
+        login_user: root
         login_password: "{{ mysql_root_password }}"
     - name: create mariadb db
       mysql_db:
@@ -88,15 +88,15 @@
 
     - name: Removes the MySQL test database
       mysql_db:
-        name: test
+        name: db1
         state: absent
         login_user: root
         login_password: "{{ mysql_root_password }}"
     - name: run sql script
       mysql_query:
         login_db: db1
-        login_user: samim
-        login_password: samim123
+        login_user: root
+        login_password: root123
         query:
           - USE db1
           
