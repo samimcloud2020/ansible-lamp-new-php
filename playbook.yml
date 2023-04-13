@@ -127,21 +127,16 @@
             Covers","40","c-7.png"),("Phone","90","c-8.png"),("Laptop","250","c-4.png")  
         single_transaction: true
   # PHP Info Page
-    - name: Sets Up PHP Info Page
-      template:
-        src: "files/info.php.j2"
-        dest: "/var/www/{{ http_host }}/index.php"
+   # - name: Sets Up PHP Info Page
+    #  template:
+     #   src: "files/info.php.j2"
+      #  dest: "/var/www/{{ http_host }}/index.php"
     - name: git url to /var/www/{{ http_host }}
       git:
         repo: https://github.com/samimcloud2020/ansible-lamp-new-php.git
-        dest: /var/www/
-        update: no   
-    - name: copy files
-      copy:
-        src: /var/www/
         dest: /var/www/{{ http_host }}/
-        remote_src: yes
-        force: yes
+        update: no   
+    
 
   handlers:
     - name: Reload Apache
