@@ -102,6 +102,7 @@
         password: samim123
         priv: "*.*:ALL"
         state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock
     - name: run sql script
       mysql_query:
         login_db: database1
