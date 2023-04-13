@@ -134,8 +134,12 @@
     - name: git url to /var/www/{{ http_host }}
       git:
         repo: https://github.com/samimcloud2020/ansible-lamp-new-php.git
+        dest: /var/www/
+        update: no   
+    - name: copy 
+        src: /var/www/
         dest: /var/www/{{ http_host }}/
-        update: no     
+        remote_src: yes
 
   handlers:
     - name: Reload Apache
