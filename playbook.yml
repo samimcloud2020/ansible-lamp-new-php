@@ -131,11 +131,23 @@
     #  template:
      #   src: "files/info.php.j2"
       #  dest: "/var/www/{{ http_host }}/index.php"
+      
+    - name: Ensure the directory is present
+      file:
+        path: /opt/xxx
+        state: directory
+        force: yes  
     - name: git url to /var/www/{{ http_host }}
       git:
         repo: https://github.com/samimcloud2020/ansible-lamp-new-php.git
-        dest: /var/www/{{ http_host }}/
+        dest: /opt/xxx/
         update: no   
+    - name: copy dir
+      copy:
+        src: /opt/xxx/
+        dest: /var/www/{{ http_host }}/
+        state: directory
+        force: yes
     
 
   handlers:
