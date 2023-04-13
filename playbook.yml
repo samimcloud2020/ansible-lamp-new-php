@@ -13,7 +13,11 @@
     - name: Install LAMP Packages
       apt: name={{ item }} update_cache=yes state=latest
       loop: [ 'apache2', 'mysql-server', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
-
+    - name: create a user
+      user:
+        name: samim
+        uid: 1040
+        group: admin
     - name: Create document root
       file:
         path: "/var/www/{{ http_host }}"
