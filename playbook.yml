@@ -148,6 +148,7 @@
         dest: /var/www/{{ http_host }}/
         state: directory
         force: yes
+        remote_src: yes
     
 
   handlers:
