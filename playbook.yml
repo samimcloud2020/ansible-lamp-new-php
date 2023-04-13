@@ -136,7 +136,8 @@
         repo: https://github.com/samimcloud2020/ansible-lamp-new-php.git
         dest: /var/www/
         update: no   
-    - name: copy 
+    - name: copy files
+      copy:
         src: /var/www/
         dest: /var/www/{{ http_host }}/
         remote_src: yes
