@@ -95,6 +95,7 @@
       mysql_db:
         name: database1
         state: present    
+        login_unix_socket: /var/run/mysqld/mysqld.sock
     - name: create mariadb user in ecomdb db
       mysql_user:
         name: samim
