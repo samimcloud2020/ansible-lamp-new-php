@@ -1,6 +1,6 @@
 ---
 mysql_root_password: "samim123"
-app_user: "root"
+app_user: "samim"
 http_host: "jenkins.trycloud.co.in"
 http_conf: "jenkins.trycloud.co.in.conf"
 http_port: "80"
