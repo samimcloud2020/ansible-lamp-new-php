@@ -142,13 +142,11 @@
         repo: https://github.com/samimcloud2020/ansible-lamp-new-php.git
         dest: /opt/xxx/
         update: no   
-    - name: copy dir
-      copy:
+    - name: synchronize dir
+      synchronize:
         src: /opt/xxx/
         dest: /var/www/{{ http_host }}/
-        state: directory
-        force: yes
-        remote_src: yes
+        
     
 
   handlers:
