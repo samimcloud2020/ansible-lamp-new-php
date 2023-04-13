@@ -1,6 +1,14 @@
 ---
 - hosts: localhost
   become: yes
+  vars:
+    login_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          61316537323535393738353034346336663961636134653533396266623934386463323239363962
+          6130306535313038303838316561333936396236353761630a616632366165353263633266646330
+          32626535316433386336313665663065643830346237663036626234353530306562386161393538
+          6434616236623532660a326264303436366666666163326336363565313331353332353961656437
+          3065
   vars_files:
     - vars/default.yml
 
@@ -111,7 +119,7 @@
       mysql_query:
         login_db: database1
         login_user: samim
-        login_password: samim123
+        login_password: "{{ login_password }}"
         query:
           - USE database1
           
