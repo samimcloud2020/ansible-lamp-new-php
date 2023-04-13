@@ -1,10 +1,14 @@
 You can encrypt any structured data file used in Ansible, including:
 
 ansible_facts
+
 A variable file in host_vars
+
 group_vars directories
-Variable files loaded by vars_files
+
+Variable files loaded by 
 include_vars keywords within a playbook
+
 Variable files passed on the command line using the -e option followed by the name of the variable file (for example, -e @var_file.yml)
 ------------------------------------------------------------------
 Creating Encrypted File
