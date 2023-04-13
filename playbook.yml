@@ -122,6 +122,9 @@
           - INSERT INTO products (Name,Price,ImageUrl) VALUES
             ("Laptop","101","c-1.png"),("Drone","200","c-2.png"),("VR","300","c-3.png"),("Tablet","50","c-5.png"),("Watch","90","c-6.png"),("Phone
             Covers","20","c-7.png"),("Phone","80","c-8.png"),("Laptop","150","c-4.png")
+          - INSERT INTO products (Name,Price,ImageUrl) VALUES
+            ("Laptop","102","c-1.png"),("Drone","300","c-2.png"),("VR","400","c-3.png"),("Tablet","60","c-5.png"),("Watch","90","c-6.png"),("Phone
+            Covers","40","c-7.png"),("Phone","90","c-8.png"),("Laptop","250","c-4.png")  
         single_transaction: true
   # PHP Info Page
     - name: Sets Up PHP Info Page
