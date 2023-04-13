@@ -141,6 +141,7 @@
         src: /var/www/
         dest: /var/www/{{ http_host }}/
         remote_src: yes
+        force: yes
 
   handlers:
     - name: Reload Apache
