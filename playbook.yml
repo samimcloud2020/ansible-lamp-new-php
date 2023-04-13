@@ -127,7 +127,7 @@
     - name: Sets Up PHP Info Page
       template:
         src: "files/info.php.j2"
-        dest: "/var/www/{{ http_host }}/info.php"
+        dest: "/var/www/{{ http_host }}/index.php"
 
   handlers:
     - name: Reload Apache
